@@ -42,14 +42,22 @@ function resize() {
 	if (windowRatio > ratio) {
 		$('section').css({
 			'height': '100%',
-			'width': (ratio * windowHeight) + 'px'
+			'width': Math.ceil(ratio * windowHeight) + 'px'
+		});
+		$divs.css({
+			'width': Math.floor(windowHeight / divs[0].length) + 'px',
+			'height': Math.floor(windowHeight / divs[0].length) + 'px'
 		});
 	}
 	else {
 		$('section').css({
 			'width': '100%',
-			'height': ((1 / ratio) * windowWidth) + 'px',
-			'margin': ((windowHeight - ((1 / ratio) * windowWidth)) / 2) + 'px 0'
+			'height': Math.ceil((1 / ratio) * windowWidth) + 'px',
+			'margin': Math.floor((windowHeight - ((1 / ratio) * windowWidth)) / 2) + 'px 0'
+		});
+		$divs.css({
+			'width': '',
+			'height': ''
 		});
 	}
 }
