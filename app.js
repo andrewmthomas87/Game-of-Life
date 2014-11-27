@@ -48,7 +48,8 @@ function resize() {
 	else {
 		$('section').css({
 			'width': '100%',
-			'height': ((1 / ratio) * windowWidth) + 'px'
+			'height': ((1 / ratio) * windowWidth) + 'px',
+			'margin': ((windowHeight - ((1 / ratio) * windowWidth)) / 2) + 'px 0'
 		});
 	}
 }
