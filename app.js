@@ -13,15 +13,15 @@ $(document).ready(function() {
 		var width = parseInt($(this).find('input:first-child').val(), 10);
 		var height = parseInt($(this).find('input:nth-child(2)').val(), 10);
 		if (!width || !height) {
-			error('Invalid values');
+			showError('Invalid values');
 		}
 		if (width > 500 || width < 25 || height > 500 || height < 25) {
-			error('Values must be between 25 and 500');
+			showError('Values must be between 25 and 500');
 		}
 	});
 });
 
-function error(text) {
+function showError(text) {
 	if (!error) {
 		error = true;
 		$error.html(text);
