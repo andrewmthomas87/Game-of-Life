@@ -18,12 +18,12 @@ $(document).ready(function() {
 
 function error(text) {
 	$error.html(text);
-	$error.show();
+	$error.fadeIn(250);
 	$error.css('top', '0');
 	setTimeout(function() {
 		$error.css('top', '-3em');
 		setTimeout(function() {
-			$error.hide();
+			$error.fadeOut(250);
 			$error.html('');
 		}, 250);
 	}, 2750);
