@@ -26,8 +26,8 @@ $(document).ready(function() {
 		for (i = 0; i < width; i++) {
 			divs[i] = [];
 			for (j = 0; j < height; j++) {
-				divs[i][j] = false;
-				divsHTML += '<div id=\'' + i + '-' + j + '\'></div>';
+				divs[i][j] = Math.random() > 0.5;
+				divsHTML += '<div id=\'' + i + '-' + j + '\'' + (divs[i][j] ? 'class=\'active\'' : '') + '></div>';
 			}
 		}
 		$('section').append(divsHTML);
