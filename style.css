@@ -16,6 +16,26 @@ body {
 	background-position: center center;
 	background-size: cover;
 	background-attachment: fixed;
+	font-family: 'Open Sans', sans-serif;
+}
+
+div#error {
+	display: none;
+	position: fixed;
+	top: -3em;
+	left: 0;
+	right: 0;
+	display: none;
+	color: rgba(255, 255, 255, 0.875);
+	width: 100%;
+	padding: 0.5em 0;
+	margin: 0 auto;
+	background-color: rgba(231, 76, 60, 0.875);
+	font-size: 1.5em;
+	font-weight: 300;
+	text-align: center;
+	transition: top 0.125s ease;
+	-webkit-transition: top 0.125s ease;
 }
 
 form {
