@@ -96,7 +96,7 @@ section div {
 }
 
 section div:hover {
-	background-color: rgba(255, 255, 255, 0.25);
+	background-color: rgba(52, 152, 219, 0.5);
 }
 
 section div.active {
@@ -104,7 +104,7 @@ section div.active {
 }
 
 section div.active:hover {
-	background-color: rgba(0, 0, 0, 0.75);
+	background-color: rgba(0, 0, 0, 0.625);
 }
 
 ::-webkit-input-placeholder {
