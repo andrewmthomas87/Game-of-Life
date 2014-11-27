@@ -14,7 +14,7 @@ $(document).ready(function() {
 			error('Invalid values');
 		}
 		if (width > 500 || width < 25 || height > 500 || height < 25) {
-			error('Minimum value of 25 and maximum of 500');
+			error('Values must be between 25 and 500');
 		}
 	});
 });
