@@ -1,7 +1,9 @@
 
 var $error, $divs;
 
-var error = false, divs = [];
+var error = false, divs;
+
+$(window).resize(resize);
 
 $(document).ready(function() {
 	$error = $('div#error');
@@ -20,6 +22,7 @@ $(document).ready(function() {
 		}
 		$(this).fadeOut('fast');
 		var divsHTML = '';
+		divs = [];
 		for (i = 0; i < width; i++) {
 			divs[i] = [];
 			for (j = 0; j < height; j++) {
@@ -35,30 +38,32 @@ $(document).ready(function() {
 });
 
 function resize() {
-	var ratio = divs.length / divs[0].length;
-	var windowWidth = $(window).width();
-	var windowHeight = $(window).height();
-	var windowRatio = windowWidth / windowHeight;
-	if (windowRatio > ratio) {
-		$('section').css({
-			'height': '100%',
-			'width': Math.ceil(ratio * windowHeight) + 'px'
-		});
-		$divs.css({
-			'width': Math.floor(windowHeight / divs[0].length) + 'px',
-			'height': Math.floor(windowHeight / divs[0].length) + 'px'
-		});
-	}
-	else {
-		$('section').css({
-			'width': '100%',
-			'height': Math.ceil((1 / ratio) * windowWidth) + 'px',
-			'margin': Math.floor((windowHeight - ((1 / ratio) * windowWidth)) / 2) + 'px 0'
-		});
-		$divs.css({
-			'width': '',
-			'height': ''
-		});
+	if (divs) {
+		var ratio = divs.length / divs[0].length;
+		var windowWidth = $(window).width();
+		var windowHeight = $(window).height();
+		var windowRatio = windowWidth / windowHeight;
+		if (windowRatio > ratio) {
+			$('section').css({
+				'height': '100%',
+				'width': Math.ceil(ratio * windowHeight) + 'px'
+			});
+			$divs.css({
+				'width': Math.floor(windowHeight / divs[0].length) + 'px',
+				'height': Math.floor(windowHeight / divs[0].length) + 'px'
+			});
+		}
+		else {
+			$('section').css({
+				'width': '100%',
+				'height': Math.ceil((1 / ratio) * windowWidth) + 'px',
+				'margin': Math.floor((windowHeight - ((1 / ratio) * windowWidth)) / 2) + 'px 0'
+			});
+			$divs.css({
+				'width': '',
+				'height': ''
+			});
+		}
 	}
 }
 
