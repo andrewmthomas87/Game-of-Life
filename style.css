@@ -35,8 +35,68 @@ div#error {
 	font-size: 1.25em;
 	font-weight: 300;
 	text-align: center;
+	z-index: 101;
 	transition: top 0.25s ease;
 	-webkit-transition: top 0.25s ease;
+}
+
+a#play-pause {
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: inline-block;
+	color: rgba(255, 255, 255, 0.875);
+	padding: 1em 1.5em;
+	margin: 0;
+	background-color: rgba(52, 152, 219, 0.7);
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1.5em;
+	font-weight: 300;
+	cursor: pointer;
+	z-index: 100;
+}
+
+a#play-pause:hover {
+	background-color: rgba(52, 152, 219, 0.875);
+}
+
+a#move {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	display: inline-block;
+	color: rgba(255, 255, 255, 0.875);
+	padding: 1em 1.5em;
+	margin: 0;
+	background-color: rgba(52, 152, 219, 0.7);
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1.5em;
+	font-weight: 300;
+	cursor: pointer;
+	z-index: 100;
+}
+
+a#move:hover {
+	background-color: rgba(52, 152, 219, 0.875);
+}
+
+a#erase {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: rgba(255, 255, 255, 0.875);
+	padding: 1em 1.5em;
+	margin: 0;
+	background-color: rgba(52, 152, 219, 0.7);
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1.5em;
+	font-weight: 300;
+	cursor: pointer;
+	z-index: 100;
+}
+
+a#erase:hover {
+	background-color: rgba(52, 152, 219, 0.875);
 }
 
 form {

@@ -1,7 +1,7 @@
 
 var $error, $divs;
 
-var error = false, divs;
+var error = false, divs, playing = false, interval;
 
 $(window).resize(resize);
 
@@ -41,6 +41,33 @@ $(document).ready(function() {
 		});
 		resize();
 		$('section').fadeIn('slow');
+		setTimeout(function() {
+			$('a#play-pause, a#move, a#erase').fadeIn('fast');
+		}, 1000);
+		$('a#play-pause').click(function() {
+			if (!playing) {
+				interval = setInterval(move, 100);
+				$(this).html('Pause');
+			}
+			else {
+				clearInterval(interval);
+				$(this).html('Play');
+			}
+			playing = !playing;
+		});
+		$('a#move').click(move);
+		$('a#erase').click(function() {
+			clearInterval(interval);
+			$('a#play-pause').html('Play');
+			for (i = 0; i < divs.length; i++) {
+				for (j = 0; j < divs[0].length; j++) {
+					if (divs[i][j]) {
+						divs[i][j] = false;
+						$divs.filter('#' + i + '-' + j).removeClass('active');
+					}
+				}
+			}
+		});
 	});
 });
 
@@ -53,22 +80,22 @@ function resize() {
 		if (windowRatio > ratio) {
 			$('section').css({
 				'height': '100%',
-				'width': Math.ceil(ratio * windowHeight) + 'px'
+				'width': Math.round(ratio * windowHeight) + 'px'
 			});
 			$divs.css({
-				'width': Math.floor(windowHeight / divs[0].length) + 'px',
-				'height': Math.floor(windowHeight / divs[0].length) + 'px'
+				'width': (100 / divs.length) + '%',
+				'height': (100 / divs[0].length) + '%'
 			});
 		}
 		else {
 			$('section').css({
 				'width': '100%',
-				'height': Math.ceil((1 / ratio) * windowWidth) + 'px',
-				'margin': Math.floor((windowHeight - ((1 / ratio) * windowWidth)) / 2) + 'px 0'
+				'height': Math.round((1 / ratio) * windowWidth) + 'px',
+				'margin': Math.round((windowHeight - ((1 / ratio) * windowWidth)) / 2) + 'px 0'
 			});
 			$divs.css({
-				'width': '',
-				'height': ''
+				'width': (100 / divs.length) + '%',
+				'height': (100 / divs[0].length) + '%'
 			});
 		}
 	}
@@ -89,4 +116,45 @@ function showError(text) {
 			}, 250);
 		}, 2750);
 	}
+}
+
+function move() {
+	var changes = [];
+	var changed = false;
+	for (i = 0; i < divs.length; i++) {
+		changes[i] = [];
+		for (j = 0; j < divs[0].length; j++) {
+			var count = getNeighbors(i, j);
+			if ((divs[i][j] && (count < 2 || count > 3)) || (!divs[i][j] && count == 3)) {
+				changes[i][j] = true;
+				changed = true;
+			}
+		}
+	}
+	for (i = 0; i < divs.length; i++) {
+		for (j = 0; j < divs[0].length; j++) {
+			if (changes[i][j]) {
+				divs[i][j] = !divs[i][j];
+				$divs.filter('#' + i + '-' + j).toggleClass('active');
+			}
+		}
+	}
+	if (!changed) {
+		clearInterval(interval);
+		$('a#play-pause').html('Play');
+	}
+}
+
+function getNeighbors(x, y) {
+	var count = (divs[x][y] ? -1 : 0);
+	for (k = (x > 0 ? -1 : 0); k < (x < divs.length - 1 ? 2 : 1); k++) {
+		for (l = (y > 0 ? -1 : 0); l < (y < divs[0].length - 1 ? 2 : 1); l++) {
+			var neighborX = x + k;
+			var neighborY = y + l;
+			if (divs[neighborX][neighborY]) {
+				count++;
+			}
+		}
+	}
+	return count;
 }
