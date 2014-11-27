@@ -1,8 +1,11 @@
 
 var $error;
 
+var error;
+
 $(document).ready(function() {
 	$error = $('div#error');
+	error = false;
 	setTimeout(function() {
 		$('form').fadeIn('slow');
 	}, 1000);
@@ -20,14 +23,18 @@ $(document).ready(function() {
 });
 
 function error(text) {
-	$error.html(text);
-	$error.fadeIn(250);
-	$error.css('top', '0');
-	setTimeout(function() {
-		$error.css('top', '-3em');
+	if (!error) {
+		error = true;
+		$error.html(text);
+		$error.fadeIn(250);
+		$error.css('top', '0');
 		setTimeout(function() {
-			$error.fadeOut(250);
-			$error.html('');
-		}, 250);
-	}, 2750);
+			$error.css('top', '-3em');
+			setTimeout(function() {
+				$error.fadeOut(250);
+				$error.html('');
+				error = false;
+			}, 250);
+		}, 2750);
+	}
 }
