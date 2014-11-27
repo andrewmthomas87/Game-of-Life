@@ -18,6 +18,7 @@ $(document).ready(function() {
 		if (width > 500 || width < 25 || height > 500 || height < 25) {
 			showError('Values must be between 25 and 500');
 		}
+		$(this).fadeOut('fast');
 		var divsHTML = '';
 		for (i = 0; i < width; i++) {
 			divs[i] = [];
@@ -29,6 +30,7 @@ $(document).ready(function() {
 		$('section').append(divsHTML);
 		$divs = $('section div');
 		resize();
+		$('section').fadeIn('slow');
 	});
 });
 
@@ -37,8 +39,18 @@ function resize() {
 	var windowWidth = $(window).width();
 	var windowHeight = $(window).height();
 	var windowRatio = windowWidth / windowHeight;
-	console.log('Ratio: ' + ratio);
-	console.log('Window Ratio: ' + windowRatio);
+	if (windowRatio > ratio) {
+		$('section').css({
+			'height': '100%',
+			'width': (ratio * windowHeight) + 'px'
+		});
+	}
+	else {
+		$('section').css({
+			'width': '100%',
+			'height': (ratio * windowWidth) + 'px'
+		});
+	}
 }
 
 function showError(text) {
