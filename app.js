@@ -32,7 +32,7 @@ $(document).ready(function() {
 	});
 });
 
-function resize {
+function resize() {
 	var ratio = divs.width / divs.height;
 	var windowWidth = $(window).width();
 	var windowHeight = $(window).height();
