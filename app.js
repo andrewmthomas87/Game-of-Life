@@ -18,8 +18,8 @@ $(document).ready(function() {
 			showError('Invalid values');
 			return;
 		}
-		if (width > 500 || width < 25 || height > 500 || height < 25) {
-			showError('Values must be between 25 and 500');
+		if (width > 200 || width < 10 || height > 200 || height < 10) {
+			showError('Values must be between 10 and 200');
 			return;
 		}
 		$(this).fadeOut('fast');
