@@ -25,6 +25,6 @@ function error(text) {
 		setTimeout(function() {
 			$error.hide();
 			$error.html('');
-		}, 125);
-	}, 2625);
+		}, 250);
+	}, 2750);
 }
