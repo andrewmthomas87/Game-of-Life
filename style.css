@@ -95,8 +95,16 @@ section div {
 	height: 0;
 }
 
+section div:hover {
+	background-color: rgba(255, 255, 255, 0.25);
+}
+
 section div.active {
 	background-color: rgba(0, 0, 0, 0.5);
+}
+
+section div.active:hover {
+	background-color: rgba(0, 0, 0, 0.75);
 }
 
 ::-webkit-input-placeholder {

@@ -16,9 +16,11 @@ $(document).ready(function() {
 		var height = parseInt($(this).find('input:nth-child(2)').val(), 10);
 		if (!width || !height) {
 			showError('Invalid values');
+			return;
 		}
 		if (width > 500 || width < 25 || height > 500 || height < 25) {
 			showError('Values must be between 25 and 500');
+			return;
 		}
 		$(this).fadeOut('fast');
 		var divsHTML = '';
