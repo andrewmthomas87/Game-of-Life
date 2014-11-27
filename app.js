@@ -1,11 +1,10 @@
 
 var $error;
 
-var error;
+var error = false;
 
 $(document).ready(function() {
 	$error = $('div#error');
-	error = false;
 	setTimeout(function() {
 		$('form').fadeIn('slow');
 	}, 1000);
