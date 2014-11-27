@@ -26,12 +26,17 @@ $(document).ready(function() {
 		for (i = 0; i < width; i++) {
 			divs[i] = [];
 			for (j = 0; j < height; j++) {
-				divs[i][j] = Math.random() > 0.5;
-				divsHTML += '<div id=\'' + i + '-' + j + '\'' + (divs[i][j] ? 'class=\'active\'' : '') + '></div>';
+				divs[i][j] = false;
+				divsHTML += '<div id=\'' + i + '-' + j + '\'></div>';
 			}
 		}
 		$('section').append(divsHTML);
 		$divs = $('section div');
+		$divs.click(function() {
+			var coordinates = $(this).attr('id').split('-');
+			divs[coordinates[0]][coordinates[1]] = !divs[coordinates[0]][coordinates[1]];
+			$(this).toggleClass('active');
+		});
 		resize();
 		$('section').fadeIn('slow');
 	});
