@@ -1,7 +1,7 @@
 
-var $error;
+var $error, $divs;
 
-var error = false;
+var error = false, divs = [];
 
 $(document).ready(function() {
 	$error = $('div#error');
@@ -18,8 +18,28 @@ $(document).ready(function() {
 		if (width > 500 || width < 25 || height > 500 || height < 25) {
 			showError('Values must be between 25 and 500');
 		}
+		var divs = '';
+		for (i = 0; i < width; i++) {
+			divs[i] = [];
+			for (j = 0; j < height; j++) {
+				divs[i][j] = false;
+				divs += '<div id=\'' + i + '-' + j + '\'></div>';
+			}
+		}
+		$('section').append(divs);
+		$divs = $('section div');
+		resize();
 	});
 });
+
+function resize {
+	var ratio = divs.width / divs.height;
+	var windowWidth = $(window).width();
+	var windowHeight = $(window).height();
+	var windowRatio = windowWidth / windowHeight;
+	console.log('Ratio: ' + ratio);
+	console.log('Window Ratio: ' + windowRatio);
+}
 
 function showError(text) {
 	if (!error) {

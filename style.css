@@ -82,6 +82,14 @@ form input:last-child {
 	cursor: pointer;
 }
 
+section {
+	display: none;
+}
+
+section div {
+
+}
+
 ::-webkit-input-placeholder {
 	color: rgba(255, 255, 255, 0.875);
 }
